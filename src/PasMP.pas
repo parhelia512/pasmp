@@ -1,7 +1,7 @@
 (******************************************************************************
  *                                   PasMP                                    *
  ******************************************************************************
- *                        Version 2026-01-04-11-34-0000                       *
+ *                        Version 2026-02-13-14-22-0000                       *
  ******************************************************************************
  *                                zlib license                                *
  *============================================================================*
@@ -757,72 +757,120 @@ type TPasMPAvailableCPUCores=array of TPasMPInt32;
 {$if defined(fpc) and (fpc_version>=3)}{$push}{$optimization noorderfields}{$ifend}
      TPasMPInterlocked=class
       public
+       class function Increment(var Destination:TPasMPInt8):TPasMPInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class function Increment(var Destination:TPasMPUInt8):TPasMPUInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class function Increment(var Destination:TPasMPInt16):TPasMPInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class function Increment(var Destination:TPasMPUInt16):TPasMPUInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
        class function Increment(var Destination:TPasMPInt32):TPasMPInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function Increment(var Destination:TPasMPUInt32):TPasMPUInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
 {$ifdef CPU64}
        class function Increment(var Destination:TPasMPInt64):TPasMPInt64; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function Increment(var Destination:TPasMPUInt64):TPasMPUInt64; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
 {$endif}
+       class function Decrement(var Destination:TPasMPInt8):TPasMPInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class function Decrement(var Destination:TPasMPUInt8):TPasMPUInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class function Decrement(var Destination:TPasMPInt16):TPasMPInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class function Decrement(var Destination:TPasMPUInt16):TPasMPUInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
        class function Decrement(var Destination:TPasMPInt32):TPasMPInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function Decrement(var Destination:TPasMPUInt32):TPasMPUInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
 {$ifdef CPU64}
        class function Decrement(var Destination:TPasMPInt64):TPasMPInt64; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function Decrement(var Destination:TPasMPUInt64):TPasMPUInt64; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
 {$endif}
+       class function Add(var Destination:TPasMPInt8;const Value:TPasMPInt8):TPasMPInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class function Add(var Destination:TPasMPUInt8;const Value:TPasMPUInt8):TPasMPUInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class function Add(var Destination:TPasMPInt16;const Value:TPasMPInt16):TPasMPInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class function Add(var Destination:TPasMPUInt16;const Value:TPasMPUInt16):TPasMPUInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
        class function Add(var Destination:TPasMPInt32;const Value:TPasMPInt32):TPasMPInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function Add(var Destination:TPasMPUInt32;const Value:TPasMPUInt32):TPasMPUInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
 {$ifdef CPU64}
        class function Add(var Destination:TPasMPInt64;const Value:TPasMPInt64):TPasMPInt64; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function Add(var Destination:TPasMPUInt64;const Value:TPasMPUInt64):TPasMPUInt64; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
 {$endif}
+       class function Sub(var Destination:TPasMPInt8;const Value:TPasMPInt8):TPasMPInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class function Sub(var Destination:TPasMPUInt8;const Value:TPasMPUInt8):TPasMPUInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class function Sub(var Destination:TPasMPInt16;const Value:TPasMPInt16):TPasMPInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class function Sub(var Destination:TPasMPUInt16;const Value:TPasMPUInt16):TPasMPUInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
        class function Sub(var Destination:TPasMPInt32;const Value:TPasMPInt32):TPasMPInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function Sub(var Destination:TPasMPUInt32;const Value:TPasMPUInt32):TPasMPUInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
 {$ifdef CPU64}
        class function Sub(var Destination:TPasMPInt64;const Value:TPasMPInt64):TPasMPInt64; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function Sub(var Destination:TPasMPUInt64;const Value:TPasMPUInt64):TPasMPUInt64; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
 {$endif}
+       class procedure BitwiseAnd(var Destination:TPasMPInt8;const Value:TPasMPInt8); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class procedure BitwiseAnd(var Destination:TPasMPUInt8;const Value:TPasMPUInt8); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class procedure BitwiseAnd(var Destination:TPasMPInt16;const Value:TPasMPInt16); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class procedure BitwiseAnd(var Destination:TPasMPUInt16;const Value:TPasMPUInt16); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
        class procedure BitwiseAnd(var Destination:TPasMPInt32;const Value:TPasMPInt32); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
        class procedure BitwiseAnd(var Destination:TPasMPUInt32;const Value:TPasMPUInt32); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
 {$ifdef CPU64}
        class procedure BitwiseAnd(var Destination:TPasMPInt64;const Value:TPasMPInt64); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
        class procedure BitwiseAnd(var Destination:TPasMPUInt64;const Value:TPasMPUInt64); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
 {$endif}
+       class procedure BitwiseOr(var Destination:TPasMPInt8;const Value:TPasMPInt8); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class procedure BitwiseOr(var Destination:TPasMPUInt8;const Value:TPasMPUInt8); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class procedure BitwiseOr(var Destination:TPasMPInt16;const Value:TPasMPInt16); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class procedure BitwiseOr(var Destination:TPasMPUInt16;const Value:TPasMPUInt16); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
        class procedure BitwiseOr(var Destination:TPasMPInt32;const Value:TPasMPInt32); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
        class procedure BitwiseOr(var Destination:TPasMPUInt32;const Value:TPasMPUInt32); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
 {$ifdef CPU64}
        class procedure BitwiseOr(var Destination:TPasMPInt64;const Value:TPasMPInt64); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
        class procedure BitwiseOr(var Destination:TPasMPUInt64;const Value:TPasMPUInt64); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
 {$endif}
+       class procedure BitwiseXor(var Destination:TPasMPInt8;const Value:TPasMPInt8); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class procedure BitwiseXor(var Destination:TPasMPUInt8;const Value:TPasMPUInt8); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class procedure BitwiseXor(var Destination:TPasMPInt16;const Value:TPasMPInt16); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class procedure BitwiseXor(var Destination:TPasMPUInt16;const Value:TPasMPUInt16); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
        class procedure BitwiseXor(var Destination:TPasMPInt32;const Value:TPasMPInt32); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
        class procedure BitwiseXor(var Destination:TPasMPUInt32;const Value:TPasMPUInt32); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
 {$ifdef CPU64}
        class procedure BitwiseXor(var Destination:TPasMPInt64;const Value:TPasMPInt64); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
        class procedure BitwiseXor(var Destination:TPasMPUInt64;const Value:TPasMPUInt64); overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
 {$endif}
+       class function ExchangeBitwiseAnd(var Destination:TPasMPInt8;const Value:TPasMPInt8):TPasMPInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
+       class function ExchangeBitwiseAnd(var Destination:TPasMPUInt8;const Value:TPasMPUInt8):TPasMPUInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
+       class function ExchangeBitwiseAnd(var Destination:TPasMPInt16;const Value:TPasMPInt16):TPasMPInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
+       class function ExchangeBitwiseAnd(var Destination:TPasMPUInt16;const Value:TPasMPUInt16):TPasMPUInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function ExchangeBitwiseAnd(var Destination:TPasMPInt32;const Value:TPasMPInt32):TPasMPInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function ExchangeBitwiseAnd(var Destination:TPasMPUInt32;const Value:TPasMPUInt32):TPasMPUInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
 {$ifdef CPU64}
        class function ExchangeBitwiseAnd(var Destination:TPasMPInt64;const Value:TPasMPInt64):TPasMPInt64; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function ExchangeBitwiseAnd(var Destination:TPasMPUInt64;const Value:TPasMPUInt64):TPasMPUInt64; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
 {$endif}
+       class function ExchangeBitwiseOr(var Destination:TPasMPInt8;const Value:TPasMPInt8):TPasMPInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
+       class function ExchangeBitwiseOr(var Destination:TPasMPUInt8;const Value:TPasMPUInt8):TPasMPUInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
+       class function ExchangeBitwiseOr(var Destination:TPasMPInt16;const Value:TPasMPInt16):TPasMPInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
+       class function ExchangeBitwiseOr(var Destination:TPasMPUInt16;const Value:TPasMPUInt16):TPasMPUInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function ExchangeBitwiseOr(var Destination:TPasMPInt32;const Value:TPasMPInt32):TPasMPInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function ExchangeBitwiseOr(var Destination:TPasMPUInt32;const Value:TPasMPUInt32):TPasMPUInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
 {$ifdef CPU64}
        class function ExchangeBitwiseOr(var Destination:TPasMPInt64;const Value:TPasMPInt64):TPasMPInt64; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function ExchangeBitwiseOr(var Destination:TPasMPUInt64;const Value:TPasMPUInt64):TPasMPUInt64; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
 {$endif}
+       class function ExchangeBitwiseAndOr(var Destination:TPasMPInt8;const AndValue,OrValue:TPasMPInt8):TPasMPInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
+       class function ExchangeBitwiseAndOr(var Destination:TPasMPUInt8;const AndValue,OrValue:TPasMPUInt8):TPasMPUInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
+       class function ExchangeBitwiseAndOr(var Destination:TPasMPInt16;const AndValue,OrValue:TPasMPInt16):TPasMPInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
+       class function ExchangeBitwiseAndOr(var Destination:TPasMPUInt16;const AndValue,OrValue:TPasMPUInt16):TPasMPUInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function ExchangeBitwiseAndOr(var Destination:TPasMPInt32;const AndValue,OrValue:TPasMPInt32):TPasMPInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function ExchangeBitwiseAndOr(var Destination:TPasMPUInt32;const AndValue,OrValue:TPasMPUInt32):TPasMPUInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
 {$ifdef CPU64}
        class function ExchangeBitwiseAndOr(var Destination:TPasMPInt64;const AndValue,OrValue:TPasMPInt64):TPasMPInt64; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function ExchangeBitwiseAndOr(var Destination:TPasMPUInt64;const AndValue,OrValue:TPasMPUInt64):TPasMPUInt64; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
 {$endif}
+       class function ExchangeBitwiseXor(var Destination:TPasMPInt8;const Value:TPasMPInt8):TPasMPInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
+       class function ExchangeBitwiseXor(var Destination:TPasMPUInt8;const Value:TPasMPUInt8):TPasMPUInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
+       class function ExchangeBitwiseXor(var Destination:TPasMPInt16;const Value:TPasMPInt16):TPasMPInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
+       class function ExchangeBitwiseXor(var Destination:TPasMPUInt16;const Value:TPasMPUInt16):TPasMPUInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function ExchangeBitwiseXor(var Destination:TPasMPInt32;const Value:TPasMPInt32):TPasMPInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function ExchangeBitwiseXor(var Destination:TPasMPUInt32;const Value:TPasMPUInt32):TPasMPUInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
 {$ifdef CPU64}
        class function ExchangeBitwiseXor(var Destination:TPasMPInt64;const Value:TPasMPInt64):TPasMPInt64; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function ExchangeBitwiseXor(var Destination:TPasMPUInt64;const Value:TPasMPUInt64):TPasMPUInt64; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
 {$endif}
+       class function Exchange(var Destination:TPasMPInt8;const Source:TPasMPInt8):TPasMPInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class function Exchange(var Destination:TPasMPUInt8;const Source:TPasMPUInt8):TPasMPUInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class function Exchange(var Destination:TPasMPInt16;const Source:TPasMPInt16):TPasMPInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class function Exchange(var Destination:TPasMPUInt16;const Source:TPasMPUInt16):TPasMPUInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
        class function Exchange(var Destination:TPasMPInt32;const Source:TPasMPInt32):TPasMPInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function Exchange(var Destination:TPasMPUInt32;const Source:TPasMPUInt32):TPasMPUInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
 {$ifdef CPU64}
@@ -832,6 +880,10 @@ type TPasMPAvailableCPUCores=array of TPasMPInt32;
        class function Exchange(var Destination:pointer;const Source:pointer):pointer; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function Exchange(var Destination:TObject;const Source:TObject):TObject; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function Exchange(var Destination:TPasMPBool32;const Source:TPasMPBool32):TPasMPBool32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
+       class function CompareExchange(var Destination:TPasMPInt8;const NewValue,Comperand:TPasMPInt8):TPasMPInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class function CompareExchange(var Destination:TPasMPUInt8;const NewValue,Comperand:TPasMPUInt8):TPasMPUInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class function CompareExchange(var Destination:TPasMPInt16;const NewValue,Comperand:TPasMPInt16):TPasMPInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
+       class function CompareExchange(var Destination:TPasMPUInt16;const NewValue,Comperand:TPasMPUInt16):TPasMPUInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(cpu386) or defined(cpux86_64)}register;{$else}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}{$ifend}
        class function CompareExchange(var Destination:TPasMPInt32;const NewValue,Comperand:TPasMPInt32):TPasMPInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function CompareExchange(var Destination:TPasMPUInt32;const NewValue,Comperand:TPasMPUInt32):TPasMPUInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
 {$if defined(CPU64) or ((defined(CPU386) or defined(CPUARM)) and defined(PASMP_HAS_DOUBLE_NATIVE_MACHINE_WORD_ATOMIC_COMPARE_EXCHANGE))}
@@ -845,6 +897,10 @@ type TPasMPAvailableCPUCores=array of TPasMPInt32;
        class function CompareExchange(var Destination:pointer;const NewValue,Comperand:pointer):pointer; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function CompareExchange(var Destination:TObject;const NewValue,Comperand:TObject):TObject; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function CompareExchange(var Destination:TPasMPBool32;const NewValue,Comperand:TPasMPBool32):TPasMPBool32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
+       class function Read(var Source:TPasMPInt8):TPasMPInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
+       class function Read(var Source:TPasMPUInt8):TPasMPUInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
+       class function Read(var Source:TPasMPInt16):TPasMPInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
+       class function Read(var Source:TPasMPUInt16):TPasMPUInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function Read(var Source:TPasMPInt32):TPasMPInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function Read(var Source:TPasMPUInt32):TPasMPUInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
 {$if defined(CPU64) or ((defined(CPU386) or defined(CPUARM)) and defined(PASMP_HAS_DOUBLE_NATIVE_MACHINE_WORD_ATOMIC_COMPARE_EXCHANGE))}
@@ -858,6 +914,10 @@ type TPasMPAvailableCPUCores=array of TPasMPInt32;
        class function Read(var Source:pointer):pointer; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function Read(var Source:TObject):TObject; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function Read(var Source:TPasMPBool32):TPasMPBool32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
+       class function Write(var Destination:TPasMPInt8;const Source:TPasMPInt8):TPasMPInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
+       class function Write(var Destination:TPasMPUInt8;const Source:TPasMPUInt8):TPasMPUInt8; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
+       class function Write(var Destination:TPasMPInt16;const Source:TPasMPInt16):TPasMPInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
+       class function Write(var Destination:TPasMPUInt16;const Source:TPasMPUInt16):TPasMPUInt16; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function Write(var Destination:TPasMPInt32;const Source:TPasMPInt32):TPasMPInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
        class function Write(var Destination:TPasMPUInt32;const Source:TPasMPUInt32):TPasMPUInt32; overload; {$ifdef HAS_STATIC}static;{$endif}{$if defined(HAS_ATOMICS) or defined(fpc)}inline;{$ifend}
 {$if defined(CPU64) or ((defined(CPU386) or defined(CPUARM)) and defined(PASMP_HAS_DOUBLE_NATIVE_MACHINE_WORD_ATOMIC_COMPARE_EXCHANGE))}
@@ -4656,6 +4716,198 @@ begin
 end;
 {$ifend}
 
+class function TPasMPInterlocked.Increment(var Destination:TPasMPInt8):TPasMPInt8;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ mov dl,1
+ xchg edx,eax
+ lock xadd byte ptr [edx],al
+ inc al
+{$else}
+ mov al,1
+ lock xadd byte ptr [edx],al
+ inc al
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ mov al,1
+ lock xadd byte ptr [rcx],al
+ inc al
+{$else}
+ mov al,1
+ lock xadd byte ptr [rdx],al
+ inc al
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ mov al,1
+ lock xadd byte ptr [rdi],al
+ inc al
+{$else}
+ mov al,1
+ lock xadd byte ptr [rsi],al
+ inc al
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt8;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,TPasMPInt8(OldValue+1),OldValue)=OldValue;
+ result:=TPasMPInt8(OldValue+1);
+end;
+{$ifend}
+
+class function TPasMPInterlocked.Increment(var Destination:TPasMPUInt8):TPasMPUInt8;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ mov dl,1
+ xchg edx,eax
+ lock xadd byte ptr [edx],al
+ inc al
+{$else}
+ mov al,1
+ lock xadd byte ptr [edx],al
+ inc al
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ mov al,1
+ lock xadd byte ptr [rcx],al
+ inc al
+{$else}
+ mov al,1
+ lock xadd byte ptr [rdx],al
+ inc al
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ mov al,1
+ lock xadd byte ptr [rdi],al
+ inc al
+{$else}
+ mov al,1
+ lock xadd byte ptr [rsi],al
+ inc al
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPUInt8;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,TPasMPUInt8(OldValue+1),OldValue)=OldValue;
+ result:=TPasMPUInt8(OldValue+1);
+end;
+{$ifend}
+
+class function TPasMPInterlocked.Increment(var Destination:TPasMPInt16):TPasMPInt16;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ mov dx,1
+ xchg edx,eax
+ lock xadd word ptr [edx],ax
+ inc ax
+{$else}
+ mov ax,1
+ lock xadd word ptr [edx],ax
+ inc ax
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ mov ax,1
+ lock xadd word ptr [rcx],ax
+ inc ax
+{$else}
+ mov ax,1
+ lock xadd word ptr [rdx],ax
+ inc ax
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ mov ax,1
+ lock xadd word ptr [rdi],ax
+ inc ax
+{$else}
+ mov ax,1
+ lock xadd word ptr [rsi],ax
+ inc ax
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt16;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,TPasMPInt16(OldValue+1),OldValue)=OldValue;
+ result:=TPasMPInt16(OldValue+1);
+end;
+{$ifend}
+
+class function TPasMPInterlocked.Increment(var Destination:TPasMPUInt16):TPasMPUInt16;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ mov dx,1
+ xchg edx,eax
+ lock xadd word ptr [edx],ax
+ inc ax
+{$else}
+ mov ax,1
+ lock xadd word ptr [edx],ax
+ inc ax
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ mov ax,1
+ lock xadd word ptr [rcx],ax
+ inc ax
+{$else}
+ mov ax,1
+ lock xadd word ptr [rdx],ax
+ inc ax
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ mov ax,1
+ lock xadd word ptr [rdi],ax
+ inc ax
+{$else}
+ mov ax,1
+ lock xadd word ptr [rsi],ax
+ inc ax
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPUInt16;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,TPasMPUInt16(OldValue+1),OldValue)=OldValue;
+ result:=TPasMPUInt16(OldValue+1);
+end;
+{$ifend}
+
 class function TPasMPInterlocked.Increment(var Destination:TPasMPInt32):TPasMPInt32;
 begin
 {$ifdef HAS_ATOMICS}
@@ -4693,6 +4945,198 @@ begin
 {$endif}
 end;
 {$endif}
+
+class function TPasMPInterlocked.Decrement(var Destination:TPasMPInt8):TPasMPInt8;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ mov dl,$ff
+ xchg edx,eax
+ lock xadd byte ptr [edx],al
+ dec al
+{$else}
+ mov al,$ff
+ lock xadd byte ptr [edx],al
+ dec al
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ mov al,$ff
+ lock xadd byte ptr [rcx],al
+ dec al
+{$else}
+ mov al,$ff
+ lock xadd byte ptr [rdx],al
+ dec al
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ mov al,$ff
+ lock xadd byte ptr [rdi],al
+ dec al
+{$else}
+ mov al,$ff
+ lock xadd byte ptr [rsi],al
+ dec al
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt8;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,TPasMPInt8(OldValue-1),OldValue)=OldValue;
+ result:=TPasMPInt8(OldValue-1);
+end;
+{$ifend}
+
+class function TPasMPInterlocked.Decrement(var Destination:TPasMPUInt8):TPasMPUInt8;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ mov dl,$ff
+ xchg edx,eax
+ lock xadd byte ptr [edx],al
+ dec al
+{$else}
+ mov al,$ff
+ lock xadd byte ptr [edx],al
+ dec al
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ mov al,$ff
+ lock xadd byte ptr [rcx],al
+ dec al
+{$else}
+ mov al,$ff
+ lock xadd byte ptr [rdx],al
+ dec al
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ mov al,$ff
+ lock xadd byte ptr [rdi],al
+ dec al
+{$else}
+ mov al,$ff
+ lock xadd byte ptr [rsi],al
+ dec al
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPUInt8;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,TPasMPUInt8(OldValue-1),OldValue)=OldValue;
+ result:=TPasMPUInt8(OldValue-1);
+end;
+{$ifend}
+
+class function TPasMPInterlocked.Decrement(var Destination:TPasMPInt16):TPasMPInt16;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ mov dx,$ffff
+ xchg edx,eax
+ lock xadd word ptr [edx],ax
+ dec ax
+{$else}
+ mov ax,$ffff
+ lock xadd word ptr [edx],ax
+ dec ax
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ mov ax,$ffff
+ lock xadd word ptr [rcx],ax
+ dec ax
+{$else}
+ mov ax,$ffff
+ lock xadd word ptr [rdx],ax
+ dec ax
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ mov ax,$ffff
+ lock xadd word ptr [rdi],ax
+ dec ax
+{$else}
+ mov ax,$ffff
+ lock xadd word ptr [rsi],ax
+ dec ax
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt16;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,TPasMPInt16(OldValue-1),OldValue)=OldValue;
+ result:=TPasMPInt16(OldValue-1);
+end;
+{$ifend}
+
+class function TPasMPInterlocked.Decrement(var Destination:TPasMPUInt16):TPasMPUInt16;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ mov dx,$ffff
+ xchg edx,eax
+ lock xadd word ptr [edx],ax
+ dec ax
+{$else}
+ mov ax,$ffff
+ lock xadd word ptr [edx],ax
+ dec ax
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ mov ax,$ffff
+ lock xadd word ptr [rcx],ax
+ dec ax
+{$else}
+ mov ax,$ffff
+ lock xadd word ptr [rdx],ax
+ dec ax
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ mov ax,$ffff
+ lock xadd word ptr [rdi],ax
+ dec ax
+{$else}
+ mov ax,$ffff
+ lock xadd word ptr [rsi],ax
+ dec ax
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPUInt16;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,TPasMPUInt16(OldValue-1),OldValue)=OldValue;
+ result:=TPasMPUInt16(OldValue-1);
+end;
+{$ifend}
 
 class function TPasMPInterlocked.Decrement(var Destination:TPasMPInt32):TPasMPInt32;
 begin
@@ -4732,6 +5176,198 @@ begin
 end;
 {$endif}
 
+class function TPasMPInterlocked.Add(var Destination:TPasMPInt8;const Value:TPasMPInt8):TPasMPInt8;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ xchg edx,eax
+ lock xadd byte ptr [edx],al
+{$else}
+ xchg ecx,edx
+ mov al,cl
+ lock xadd byte ptr [edx],al
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ mov al,dl
+ lock xadd byte ptr [rcx],al
+{$else}
+ mov al,r8b
+ lock xadd byte ptr [rdx],al
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ mov al,sil
+ lock xadd byte ptr [rdi],al
+{$else}
+ mov al,dl
+ lock xadd byte ptr [rsi],al
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt32;
+    p:PPasMPInt32;
+    Shift:TPasMPInt32;
+    Mask:TPasMPUInt32;
+begin
+ p:=PPasMPInt32(pointer(TPasMPPtrUInt(TPasMPPtrUInt(@Destination) and not TPasMPPtrUInt(3))));
+ Shift:=TPasMPInt32((TPasMPPtrUInt(@Destination) and 3) shl 3);
+ Mask:=TPasMPUInt32($ff) shl Shift;
+ repeat
+  OldValue:=p^;
+  result:=TPasMPInt8(OldValue shr Shift);
+ until TPasMPInterlocked.CompareExchange(p^,TPasMPInt32((TPasMPUInt32(OldValue) and not Mask) or ((TPasMPUInt32(TPasMPUInt8(result+Value)) shl Shift) and Mask)),OldValue)=OldValue;
+end;
+{$ifend}
+
+class function TPasMPInterlocked.Add(var Destination:TPasMPUInt8;const Value:TPasMPUInt8):TPasMPUInt8;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ xchg edx,eax
+ lock xadd byte ptr [edx],al
+{$else}
+ xchg ecx,edx
+ mov al,cl
+ lock xadd byte ptr [edx],al
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ mov al,dl
+ lock xadd byte ptr [rcx],al
+{$else}
+ mov al,r8b
+ lock xadd byte ptr [rdx],al
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ mov al,sil
+ lock xadd byte ptr [rdi],al
+{$else}
+ mov al,dl
+ lock xadd byte ptr [rsi],al
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt32;
+    p:PPasMPInt32;
+    Shift:TPasMPInt32;
+    Mask:TPasMPUInt32;
+begin
+ p:=PPasMPInt32(pointer(TPasMPPtrUInt(TPasMPPtrUInt(@Destination) and not TPasMPPtrUInt(3))));
+ Shift:=TPasMPInt32((TPasMPPtrUInt(@Destination) and 3) shl 3);
+ Mask:=TPasMPUInt32($ff) shl Shift;
+ repeat
+  OldValue:=p^;
+  result:=TPasMPUInt8(OldValue shr Shift);
+ until TPasMPInterlocked.CompareExchange(p^,TPasMPInt32((TPasMPUInt32(OldValue) and not Mask) or ((TPasMPUInt32(TPasMPUInt8(result+Value)) shl Shift) and Mask)),OldValue)=OldValue;
+end;
+{$ifend}
+
+class function TPasMPInterlocked.Add(var Destination:TPasMPInt16;const Value:TPasMPInt16):TPasMPInt16;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ xchg edx,eax
+ lock xadd word ptr [edx],ax
+{$else}
+ xchg ecx,edx
+ mov ax,cx
+ lock xadd word ptr [edx],ax
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ mov ax,dx
+ lock xadd word ptr [rcx],ax
+{$else}
+ mov ax,r8w
+ lock xadd word ptr [rdx],ax
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ mov ax,si
+ lock xadd word ptr [rdi],ax
+{$else}
+ mov ax,dx
+ lock xadd word ptr [rsi],ax
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt32;
+    p:PPasMPInt32;
+    Shift:TPasMPInt32;
+    Mask:TPasMPUInt32;
+begin
+ p:=PPasMPInt32(pointer(TPasMPPtrUInt(TPasMPPtrUInt(@Destination) and not TPasMPPtrUInt(3))));
+ Shift:=TPasMPInt32((TPasMPPtrUInt(@Destination) and 2) shl 3);
+ Mask:=TPasMPUInt32($ffff) shl Shift;
+ repeat
+  OldValue:=p^;
+  result:=TPasMPInt16(OldValue shr Shift);
+ until TPasMPInterlocked.CompareExchange(p^,TPasMPInt32((TPasMPUInt32(OldValue) and not Mask) or ((TPasMPUInt32(TPasMPUInt16(result+Value)) shl Shift) and Mask)),OldValue)=OldValue;
+end;
+{$ifend}
+
+class function TPasMPInterlocked.Add(var Destination:TPasMPUInt16;const Value:TPasMPUInt16):TPasMPUInt16;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ xchg edx,eax
+ lock xadd word ptr [edx],ax
+{$else}
+ xchg ecx,edx
+ mov ax,cx
+ lock xadd word ptr [edx],ax
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ mov ax,dx
+ lock xadd word ptr [rcx],ax
+{$else}
+ mov ax,r8w
+ lock xadd word ptr [rdx],ax
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ mov ax,si
+ lock xadd word ptr [rdi],ax
+{$else}
+ mov ax,dx
+ lock xadd word ptr [rsi],ax
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt32;
+    p:PPasMPInt32;
+    Shift:TPasMPInt32;
+    Mask:TPasMPUInt32;
+begin
+ p:=PPasMPInt32(pointer(TPasMPPtrUInt(TPasMPPtrUInt(@Destination) and not TPasMPPtrUInt(3))));
+ Shift:=TPasMPInt32((TPasMPPtrUInt(@Destination) and 2) shl 3);
+ Mask:=TPasMPUInt32($ffff) shl Shift;
+ repeat
+  OldValue:=p^;
+  result:=TPasMPUInt16(OldValue shr Shift);
+ until TPasMPInterlocked.CompareExchange(p^,TPasMPInt32((TPasMPUInt32(OldValue) and not Mask) or ((TPasMPUInt32(TPasMPUInt16(result+Value)) shl Shift) and Mask)),OldValue)=OldValue;
+end;
+{$ifend}
+
 class function TPasMPInterlocked.Add(var Destination:TPasMPInt32;const Value:TPasMPInt32):TPasMPInt32;
 begin
 {$ifdef HAS_ATOMICS}
@@ -4770,6 +5406,194 @@ begin
 end;
 {$endif}
 
+class function TPasMPInterlocked.Sub(var Destination:TPasMPInt8;const Value:TPasMPInt8):TPasMPInt8;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ neg dl
+ xchg edx,eax
+ lock xadd byte ptr [edx],al
+{$else}
+ neg cl
+ mov al,cl
+ lock xadd byte ptr [edx],al
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ neg dl
+ mov al,dl
+ lock xadd byte ptr [rcx],al
+{$else}
+ neg r8b
+ mov al,r8b
+ lock xadd byte ptr [rdx],al
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ neg sil
+ mov al,sil
+ lock xadd byte ptr [rdi],al
+{$else}
+ neg dl
+ mov al,dl
+ lock xadd byte ptr [rsi],al
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt8;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,TPasMPInt8(OldValue-Value),OldValue)=OldValue;
+ result:=OldValue;
+end;
+{$ifend}
+
+class function TPasMPInterlocked.Sub(var Destination:TPasMPUInt8;const Value:TPasMPUInt8):TPasMPUInt8;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ neg dl
+ xchg edx,eax
+ lock xadd byte ptr [edx],al
+{$else}
+ neg cl
+ mov al,cl
+ lock xadd byte ptr [edx],al
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ neg dl
+ mov al,dl
+ lock xadd byte ptr [rcx],al
+{$else}
+ neg r8b
+ mov al,r8b
+ lock xadd byte ptr [rdx],al
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ neg sil
+ mov al,sil
+ lock xadd byte ptr [rdi],al
+{$else}
+ neg dl
+ mov al,dl
+ lock xadd byte ptr [rsi],al
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPUInt8;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,TPasMPUInt8(OldValue-Value),OldValue)=OldValue;
+ result:=OldValue;
+end;
+{$ifend}
+
+class function TPasMPInterlocked.Sub(var Destination:TPasMPInt16;const Value:TPasMPInt16):TPasMPInt16;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ neg dx
+ xchg edx,eax
+ lock xadd word ptr [edx],ax
+{$else}
+ neg cx
+ mov ax,cx
+ lock xadd word ptr [edx],ax
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ neg dx
+ mov ax,dx
+ lock xadd word ptr [rcx],ax
+{$else}
+ neg r8w
+ mov ax,r8w
+ lock xadd word ptr [rdx],ax
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ neg si
+ mov ax,si
+ lock xadd word ptr [rdi],ax
+{$else}
+ neg dx
+ mov ax,dx
+ lock xadd word ptr [rsi],ax
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt16;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,TPasMPInt16(OldValue-Value),OldValue)=OldValue;
+ result:=OldValue;
+end;
+{$ifend}
+
+class function TPasMPInterlocked.Sub(var Destination:TPasMPUInt16;const Value:TPasMPUInt16):TPasMPUInt16;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ neg dx
+ xchg edx,eax
+ lock xadd word ptr [edx],ax
+{$else}
+ neg cx
+ mov ax,cx
+ lock xadd word ptr [edx],ax
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ neg dx
+ mov ax,dx
+ lock xadd word ptr [rcx],ax
+{$else}
+ neg r8w
+ mov ax,r8w
+ lock xadd word ptr [rdx],ax
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ neg si
+ mov ax,si
+ lock xadd word ptr [rdi],ax
+{$else}
+ neg dx
+ mov ax,dx
+ lock xadd word ptr [rsi],ax
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPUInt16;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,TPasMPUInt16(OldValue-Value),OldValue)=OldValue;
+ result:=OldValue;
+end;
+{$ifend}
+
 class function TPasMPInterlocked.Sub(var Destination:TPasMPInt32;const Value:TPasMPInt32):TPasMPInt32;
 begin
 {$ifdef HAS_ATOMICS}
@@ -4807,6 +5631,142 @@ begin
 {$endif}
 end;
 {$endif}
+
+class procedure TPasMPInterlocked.BitwiseAnd(var Destination:TPasMPInt8;const Value:TPasMPInt8);
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ lock and byte ptr [eax],dl
+{$else}
+ lock and byte ptr [edx],cl
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ lock and byte ptr [rcx],dl
+{$else}
+ lock and byte ptr [rdx],r8b
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ lock and byte ptr [rdi],sil
+{$else}
+ lock and byte ptr [rsi],dl
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt8;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,OldValue and Value,OldValue)=OldValue;
+end;
+{$ifend}
+
+class procedure TPasMPInterlocked.BitwiseAnd(var Destination:TPasMPUInt8;const Value:TPasMPUInt8);
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ lock and byte ptr [eax],dl
+{$else}
+ lock and byte ptr [edx],cl
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ lock and byte ptr [rcx],dl
+{$else}
+ lock and byte ptr [rdx],r8b
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ lock and byte ptr [rdi],sil
+{$else}
+ lock and byte ptr [rsi],dl
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPUInt8;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,OldValue and Value,OldValue)=OldValue;
+end;
+{$ifend}
+
+class procedure TPasMPInterlocked.BitwiseAnd(var Destination:TPasMPInt16;const Value:TPasMPInt16);
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ lock and word ptr [eax],dx
+{$else}
+ lock and word ptr [edx],cx
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ lock and word ptr [rcx],dx
+{$else}
+ lock and word ptr [rdx],r8w
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ lock and word ptr [rdi],si
+{$else}
+ lock and word ptr [rsi],dx
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt16;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,OldValue and Value,OldValue)=OldValue;
+end;
+{$ifend}
+
+class procedure TPasMPInterlocked.BitwiseAnd(var Destination:TPasMPUInt16;const Value:TPasMPUInt16);
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ lock and word ptr [eax],dx
+{$else}
+ lock and word ptr [edx],cx
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ lock and word ptr [rcx],dx
+{$else}
+ lock and word ptr [rdx],r8w
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ lock and word ptr [rdi],si
+{$else}
+ lock and word ptr [rsi],dx
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPUInt16;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,OldValue and Value,OldValue)=OldValue;
+end;
+{$ifend}
 
 class procedure TPasMPInterlocked.BitwiseAnd(var Destination:TPasMPInt32;const Value:TPasMPInt32);
 {$if defined(cpu386)}
@@ -4978,6 +5938,142 @@ end;
 {$ifend}
 {$endif}
 
+class procedure TPasMPInterlocked.BitwiseOr(var Destination:TPasMPInt8;const Value:TPasMPInt8);
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ lock or byte ptr [eax],dl
+{$else}
+ lock or byte ptr [edx],cl
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ lock or byte ptr [rcx],dl
+{$else}
+ lock or byte ptr [rdx],r8b
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ lock or byte ptr [rdi],sil
+{$else}
+ lock or byte ptr [rsi],dl
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt8;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,OldValue or Value,OldValue)=OldValue;
+end;
+{$ifend}
+
+class procedure TPasMPInterlocked.BitwiseOr(var Destination:TPasMPUInt8;const Value:TPasMPUInt8);
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ lock or byte ptr [eax],dl
+{$else}
+ lock or byte ptr [edx],cl
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ lock or byte ptr [rcx],dl
+{$else}
+ lock or byte ptr [rdx],r8b
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ lock or byte ptr [rdi],sil
+{$else}
+ lock or byte ptr [rsi],dl
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPUInt8;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,OldValue or Value,OldValue)=OldValue;
+end;
+{$ifend}
+
+class procedure TPasMPInterlocked.BitwiseOr(var Destination:TPasMPInt16;const Value:TPasMPInt16);
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ lock or word ptr [eax],dx
+{$else}
+ lock or word ptr [edx],cx
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ lock or word ptr [rcx],dx
+{$else}
+ lock or word ptr [rdx],r8w
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ lock or word ptr [rdi],si
+{$else}
+ lock or word ptr [rsi],dx
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt16;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,OldValue or Value,OldValue)=OldValue;
+end;
+{$ifend}
+
+class procedure TPasMPInterlocked.BitwiseOr(var Destination:TPasMPUInt16;const Value:TPasMPUInt16);
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ lock or word ptr [eax],dx
+{$else}
+ lock or word ptr [edx],cx
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ lock or word ptr [rcx],dx
+{$else}
+ lock or word ptr [rdx],r8w
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ lock or word ptr [rdi],si
+{$else}
+ lock or word ptr [rsi],dx
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPUInt16;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,OldValue or Value,OldValue)=OldValue;
+end;
+{$ifend}
+
 class procedure TPasMPInterlocked.BitwiseOr(var Destination:TPasMPInt32;const Value:TPasMPInt32);
 {$if defined(cpu386)}
 asm
@@ -5147,6 +6243,142 @@ begin
 end;
 {$ifend}
 {$endif}
+
+class procedure TPasMPInterlocked.BitwiseXor(var Destination:TPasMPInt8;const Value:TPasMPInt8);
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ lock xor byte ptr [eax],dl
+{$else}
+ lock xor byte ptr [edx],cl
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ lock xor byte ptr [rcx],dl
+{$else}
+ lock xor byte ptr [rdx],r8b
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ lock xor byte ptr [rdi],sil
+{$else}
+ lock xor byte ptr [rsi],dl
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt8;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,OldValue xor Value,OldValue)=OldValue;
+end;
+{$ifend}
+
+class procedure TPasMPInterlocked.BitwiseXor(var Destination:TPasMPUInt8;const Value:TPasMPUInt8);
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ lock xor byte ptr [eax],dl
+{$else}
+ lock xor byte ptr [edx],cl
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ lock xor byte ptr [rcx],dl
+{$else}
+ lock xor byte ptr [rdx],r8b
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ lock xor byte ptr [rdi],sil
+{$else}
+ lock xor byte ptr [rsi],dl
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPUInt8;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,OldValue xor Value,OldValue)=OldValue;
+end;
+{$ifend}
+
+class procedure TPasMPInterlocked.BitwiseXor(var Destination:TPasMPInt16;const Value:TPasMPInt16);
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ lock xor word ptr [eax],dx
+{$else}
+ lock xor word ptr [edx],cx
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ lock xor word ptr [rcx],dx
+{$else}
+ lock xor word ptr [rdx],r8w
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ lock xor word ptr [rdi],si
+{$else}
+ lock xor word ptr [rsi],dx
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt16;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,OldValue xor Value,OldValue)=OldValue;
+end;
+{$ifend}
+
+class procedure TPasMPInterlocked.BitwiseXor(var Destination:TPasMPUInt16;const Value:TPasMPUInt16);
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ lock xor word ptr [eax],dx
+{$else}
+ lock xor word ptr [edx],cx
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ lock xor word ptr [rcx],dx
+{$else}
+ lock xor word ptr [rdx],r8w
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ lock xor word ptr [rdi],si
+{$else}
+ lock xor word ptr [rsi],dx
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPUInt16;
+begin
+ repeat
+  OldValue:=Destination;
+ until TPasMPInterlocked.CompareExchange(Destination,OldValue xor Value,OldValue)=OldValue;
+end;
+{$ifend}
 
 class procedure TPasMPInterlocked.BitwiseXor(var Destination:TPasMPInt32;const Value:TPasMPInt32);
 {$if defined(cpu386)}
@@ -5318,6 +6550,42 @@ end;
 {$ifend}
 {$endif}
 
+class function TPasMPInterlocked.ExchangeBitwiseAnd(var Destination:TPasMPInt8;const Value:TPasMPInt8):TPasMPInt8;
+var OldValue:TPasMPInt8;
+begin
+ repeat
+  OldValue:=Destination;
+  result:=TPasMPInterlocked.CompareExchange(Destination,OldValue and Value,OldValue);
+ until result=OldValue;
+end;
+
+class function TPasMPInterlocked.ExchangeBitwiseAnd(var Destination:TPasMPUInt8;const Value:TPasMPUInt8):TPasMPUInt8;
+var OldValue:TPasMPUInt8;
+begin
+ repeat
+  OldValue:=Destination;
+  result:=TPasMPInterlocked.CompareExchange(Destination,OldValue and Value,OldValue);
+ until result=OldValue;
+end;
+
+class function TPasMPInterlocked.ExchangeBitwiseAnd(var Destination:TPasMPInt16;const Value:TPasMPInt16):TPasMPInt16;
+var OldValue:TPasMPInt16;
+begin
+ repeat
+  OldValue:=Destination;
+  result:=TPasMPInterlocked.CompareExchange(Destination,OldValue and Value,OldValue);
+ until result=OldValue;
+end;
+
+class function TPasMPInterlocked.ExchangeBitwiseAnd(var Destination:TPasMPUInt16;const Value:TPasMPUInt16):TPasMPUInt16;
+var OldValue:TPasMPUInt16;
+begin
+ repeat
+  OldValue:=Destination;
+  result:=TPasMPInterlocked.CompareExchange(Destination,OldValue and Value,OldValue);
+ until result=OldValue;
+end;
+
 class function TPasMPInterlocked.ExchangeBitwiseAnd(var Destination:TPasMPInt32;const Value:TPasMPInt32):TPasMPInt32;
 var OldValue,NewValue:TPasMPInt32;
 begin
@@ -5375,6 +6643,42 @@ begin
  until result=OldValue;
 end;
 {$endif}
+
+class function TPasMPInterlocked.ExchangeBitwiseOr(var Destination:TPasMPInt8;const Value:TPasMPInt8):TPasMPInt8;
+var OldValue:TPasMPInt8;
+begin
+ repeat
+  OldValue:=Destination;
+  result:=TPasMPInterlocked.CompareExchange(Destination,OldValue or Value,OldValue);
+ until result=OldValue;
+end;
+
+class function TPasMPInterlocked.ExchangeBitwiseOr(var Destination:TPasMPUInt8;const Value:TPasMPUInt8):TPasMPUInt8;
+var OldValue:TPasMPUInt8;
+begin
+ repeat
+  OldValue:=Destination;
+  result:=TPasMPInterlocked.CompareExchange(Destination,OldValue or Value,OldValue);
+ until result=OldValue;
+end;
+
+class function TPasMPInterlocked.ExchangeBitwiseOr(var Destination:TPasMPInt16;const Value:TPasMPInt16):TPasMPInt16;
+var OldValue:TPasMPInt16;
+begin
+ repeat
+  OldValue:=Destination;
+  result:=TPasMPInterlocked.CompareExchange(Destination,OldValue or Value,OldValue);
+ until result=OldValue;
+end;
+
+class function TPasMPInterlocked.ExchangeBitwiseOr(var Destination:TPasMPUInt16;const Value:TPasMPUInt16):TPasMPUInt16;
+var OldValue:TPasMPUInt16;
+begin
+ repeat
+  OldValue:=Destination;
+  result:=TPasMPInterlocked.CompareExchange(Destination,OldValue or Value,OldValue);
+ until result=OldValue;
+end;
 
 class function TPasMPInterlocked.ExchangeBitwiseOr(var Destination:TPasMPInt32;const Value:TPasMPInt32):TPasMPInt32;
 var OldValue,NewValue:TPasMPInt32;
@@ -5434,6 +6738,42 @@ begin
 end;
 {$endif}
 
+class function TPasMPInterlocked.ExchangeBitwiseAndOr(var Destination:TPasMPInt8;const AndValue,OrValue:TPasMPInt8):TPasMPInt8;
+var OldValue:TPasMPInt8;
+begin
+ repeat
+  OldValue:=Destination;
+  result:=TPasMPInterlocked.CompareExchange(Destination,TPasMPInt8((OldValue and AndValue) or OrValue),OldValue);
+ until result=OldValue;
+end;
+
+class function TPasMPInterlocked.ExchangeBitwiseAndOr(var Destination:TPasMPUInt8;const AndValue,OrValue:TPasMPUInt8):TPasMPUInt8;
+var OldValue:TPasMPUInt8;
+begin
+ repeat
+  OldValue:=Destination;
+  result:=TPasMPInterlocked.CompareExchange(Destination,TPasMPUInt8((OldValue and AndValue) or OrValue),OldValue);
+ until result=OldValue;
+end;
+
+class function TPasMPInterlocked.ExchangeBitwiseAndOr(var Destination:TPasMPInt16;const AndValue,OrValue:TPasMPInt16):TPasMPInt16;
+var OldValue:TPasMPInt16;
+begin
+ repeat
+  OldValue:=Destination;
+  result:=TPasMPInterlocked.CompareExchange(Destination,TPasMPInt16((OldValue and AndValue) or OrValue),OldValue);
+ until result=OldValue;
+end;
+
+class function TPasMPInterlocked.ExchangeBitwiseAndOr(var Destination:TPasMPUInt16;const AndValue,OrValue:TPasMPUInt16):TPasMPUInt16;
+var OldValue:TPasMPUInt16;
+begin
+ repeat
+  OldValue:=Destination;
+  result:=TPasMPInterlocked.CompareExchange(Destination,TPasMPUInt16((OldValue and AndValue) or OrValue),OldValue);
+ until result=OldValue;
+end;
+
 class function TPasMPInterlocked.ExchangeBitwiseAndOr(var Destination:TPasMPInt32;const AndValue,OrValue:TPasMPInt32):TPasMPInt32;
 var OldValue,NewValue:TPasMPInt32;
 begin
@@ -5492,6 +6832,42 @@ begin
 end;
 {$endif}
 
+class function TPasMPInterlocked.ExchangeBitwiseXor(var Destination:TPasMPInt8;const Value:TPasMPInt8):TPasMPInt8;
+var OldValue:TPasMPInt8;
+begin
+ repeat
+  OldValue:=Destination;
+  result:=TPasMPInterlocked.CompareExchange(Destination,OldValue xor Value,OldValue);
+ until result=OldValue;
+end;
+
+class function TPasMPInterlocked.ExchangeBitwiseXor(var Destination:TPasMPUInt8;const Value:TPasMPUInt8):TPasMPUInt8;
+var OldValue:TPasMPUInt8;
+begin
+ repeat
+  OldValue:=Destination;
+  result:=TPasMPInterlocked.CompareExchange(Destination,OldValue xor Value,OldValue);
+ until result=OldValue;
+end;
+
+class function TPasMPInterlocked.ExchangeBitwiseXor(var Destination:TPasMPInt16;const Value:TPasMPInt16):TPasMPInt16;
+var OldValue:TPasMPInt16;
+begin
+ repeat
+  OldValue:=Destination;
+  result:=TPasMPInterlocked.CompareExchange(Destination,OldValue xor Value,OldValue);
+ until result=OldValue;
+end;
+
+class function TPasMPInterlocked.ExchangeBitwiseXor(var Destination:TPasMPUInt16;const Value:TPasMPUInt16):TPasMPUInt16;
+var OldValue:TPasMPUInt16;
+begin
+ repeat
+  OldValue:=Destination;
+  result:=TPasMPInterlocked.CompareExchange(Destination,OldValue xor Value,OldValue);
+ until result=OldValue;
+end;
+
 class function TPasMPInterlocked.ExchangeBitwiseXor(var Destination:TPasMPInt32;const Value:TPasMPInt32):TPasMPInt32;
 var OldValue,NewValue:TPasMPInt32;
 begin
@@ -5549,6 +6925,194 @@ begin
  until result=OldValue;
 end;
 {$endif}
+
+class function TPasMPInterlocked.Exchange(var Destination:TPasMPInt8;const Source:TPasMPInt8):TPasMPInt8;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ xchg edx,eax
+ lock xchg byte ptr [edx],al
+{$else}
+ mov al,cl
+ lock xchg byte ptr [edx],al
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ mov al,dl
+ lock xchg byte ptr [rcx],al
+{$else}
+ mov al,r8b
+ lock xchg byte ptr [rdx],al
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ mov al,sil
+ lock xchg byte ptr [rdi],al
+{$else}
+ mov al,dl
+ lock xchg byte ptr [rsi],al
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt32;
+    p:PPasMPInt32;
+    Shift:TPasMPInt32;
+    Mask:TPasMPUInt32;
+begin
+ p:=PPasMPInt32(pointer(TPasMPPtrUInt(TPasMPPtrUInt(@Destination) and not TPasMPPtrUInt(3))));
+ Shift:=TPasMPInt32((TPasMPPtrUInt(@Destination) and 3) shl 3);
+ Mask:=TPasMPUInt32($ff) shl Shift;
+ repeat
+  OldValue:=p^;
+  result:=TPasMPInt8(OldValue shr Shift);
+ until TPasMPInterlocked.CompareExchange(p^,TPasMPInt32((TPasMPUInt32(OldValue) and not Mask) or ((TPasMPUInt32(TPasMPUInt8(Source)) shl Shift) and Mask)),OldValue)=OldValue;
+end;
+{$ifend}
+
+class function TPasMPInterlocked.Exchange(var Destination:TPasMPUInt8;const Source:TPasMPUInt8):TPasMPUInt8;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ xchg edx,eax
+ lock xchg byte ptr [edx],al
+{$else}
+ mov al,cl
+ lock xchg byte ptr [edx],al
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ mov al,dl
+ lock xchg byte ptr [rcx],al
+{$else}
+ mov al,r8b
+ lock xchg byte ptr [rdx],al
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ mov al,sil
+ lock xchg byte ptr [rdi],al
+{$else}
+ mov al,dl
+ lock xchg byte ptr [rsi],al
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt32;
+    p:PPasMPInt32;
+    Shift:TPasMPInt32;
+    Mask:TPasMPUInt32;
+begin
+ p:=PPasMPInt32(pointer(TPasMPPtrUInt(TPasMPPtrUInt(@Destination) and not TPasMPPtrUInt(3))));
+ Shift:=TPasMPInt32((TPasMPPtrUInt(@Destination) and 3) shl 3);
+ Mask:=TPasMPUInt32($ff) shl Shift;
+ repeat
+  OldValue:=p^;
+  result:=TPasMPUInt8(OldValue shr Shift);
+ until TPasMPInterlocked.CompareExchange(p^,TPasMPInt32((TPasMPUInt32(OldValue) and not Mask) or ((TPasMPUInt32(TPasMPUInt8(Source)) shl Shift) and Mask)),OldValue)=OldValue;
+end;
+{$ifend}
+
+class function TPasMPInterlocked.Exchange(var Destination:TPasMPInt16;const Source:TPasMPInt16):TPasMPInt16;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ xchg edx,eax
+ lock xchg word ptr [edx],ax
+{$else}
+ mov ax,cx
+ lock xchg word ptr [edx],ax
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ mov ax,dx
+ lock xchg word ptr [rcx],ax
+{$else}
+ mov ax,r8w
+ lock xchg word ptr [rdx],ax
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ mov ax,si
+ lock xchg word ptr [rdi],ax
+{$else}
+ mov ax,dx
+ lock xchg word ptr [rsi],ax
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt32;
+    p:PPasMPInt32;
+    Shift:TPasMPInt32;
+    Mask:TPasMPUInt32;
+begin
+ p:=PPasMPInt32(pointer(TPasMPPtrUInt(TPasMPPtrUInt(@Destination) and not TPasMPPtrUInt(3))));
+ Shift:=TPasMPInt32((TPasMPPtrUInt(@Destination) and 2) shl 3);
+ Mask:=TPasMPUInt32($ffff) shl Shift;
+ repeat
+  OldValue:=p^;
+  result:=TPasMPInt16(OldValue shr Shift);
+ until TPasMPInterlocked.CompareExchange(p^,TPasMPInt32((TPasMPUInt32(OldValue) and not Mask) or ((TPasMPUInt32(TPasMPUInt16(Source)) shl Shift) and Mask)),OldValue)=OldValue;
+end;
+{$ifend}
+
+class function TPasMPInterlocked.Exchange(var Destination:TPasMPUInt16;const Source:TPasMPUInt16):TPasMPUInt16;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ xchg edx,eax
+ lock xchg word ptr [edx],ax
+{$else}
+ mov ax,cx
+ lock xchg word ptr [edx],ax
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ mov ax,dx
+ lock xchg word ptr [rcx],ax
+{$else}
+ mov ax,r8w
+ lock xchg word ptr [rdx],ax
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ mov ax,si
+ lock xchg word ptr [rdi],ax
+{$else}
+ mov ax,dx
+ lock xchg word ptr [rsi],ax
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt32;
+    p:PPasMPInt32;
+    Shift:TPasMPInt32;
+    Mask:TPasMPUInt32;
+begin
+ p:=PPasMPInt32(pointer(TPasMPPtrUInt(TPasMPPtrUInt(@Destination) and not TPasMPPtrUInt(3))));
+ Shift:=TPasMPInt32((TPasMPPtrUInt(@Destination) and 2) shl 3);
+ Mask:=TPasMPUInt32($ffff) shl Shift;
+ repeat
+  OldValue:=p^;
+  result:=TPasMPUInt16(OldValue shr Shift);
+ until TPasMPInterlocked.CompareExchange(p^,TPasMPInt32((TPasMPUInt32(OldValue) and not Mask) or ((TPasMPUInt32(TPasMPUInt16(Source)) shl Shift) and Mask)),OldValue)=OldValue;
+end;
+{$ifend}
 
 class function TPasMPInterlocked.Exchange(var Destination:TPasMPInt32;const Source:TPasMPInt32):TPasMPInt32;
 begin
@@ -5626,6 +7190,218 @@ begin
  result:=TPasMPBool32(TPasMPInt32(InterlockedExchange(TPasMPInt32(Destination),TPasMPInt32(Source))));
 {$endif}
 end;
+
+class function TPasMPInterlocked.CompareExchange(var Destination:TPasMPInt8;const NewValue,Comperand:TPasMPInt8):TPasMPInt8;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ xchg ecx,eax
+ lock cmpxchg byte ptr [ecx],dl
+{$else}
+ push ebx
+ mov al,[esp+8]  // Comperand
+ mov bl,cl       // NewValue
+ lock cmpxchg byte ptr [edx],bl
+ pop ebx
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ mov al,r8b
+ lock cmpxchg byte ptr [rcx],dl
+{$else}
+ mov al,[rsp+40] // Comperand (5th param)
+ lock cmpxchg byte ptr [rdx],r8b
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ mov al,dl
+ lock cmpxchg byte ptr [rdi],sil
+{$else}
+ mov al,cl
+ lock cmpxchg byte ptr [rsi],dl
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt32;
+    p:PPasMPInt32;
+    Shift:TPasMPInt32;
+    Mask:TPasMPUInt32;
+begin
+ p:=PPasMPInt32(pointer(TPasMPPtrUInt(TPasMPPtrUInt(@Destination) and not TPasMPPtrUInt(3))));
+ Shift:=TPasMPInt32((TPasMPPtrUInt(@Destination) and 3) shl 3);
+ Mask:=TPasMPUInt32($ff) shl Shift;
+ repeat
+  OldValue:=p^;
+  result:=TPasMPInt8(OldValue shr Shift);
+  if result<>Comperand then begin
+   exit;
+  end;
+ until TPasMPInterlocked.CompareExchange(p^,TPasMPInt32((TPasMPUInt32(OldValue) and not Mask) or ((TPasMPUInt32(TPasMPUInt8(NewValue)) shl Shift) and Mask)),OldValue)=OldValue;
+end;
+{$ifend}
+
+class function TPasMPInterlocked.CompareExchange(var Destination:TPasMPUInt8;const NewValue,Comperand:TPasMPUInt8):TPasMPUInt8;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ xchg ecx,eax
+ lock cmpxchg byte ptr [ecx],dl
+{$else}
+ push ebx
+ mov al,[esp+8]  // Comperand
+ mov bl,cl       // NewValue
+ lock cmpxchg byte ptr [edx],bl
+ pop ebx
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ mov al,r8b
+ lock cmpxchg byte ptr [rcx],dl
+{$else}
+ mov al,[rsp+40] // Comperand (5th param)
+ lock cmpxchg byte ptr [rdx],r8b
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ mov al,dl
+ lock cmpxchg byte ptr [rdi],sil
+{$else}
+ mov al,cl
+ lock cmpxchg byte ptr [rsi],dl
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt32;
+    p:PPasMPInt32;
+    Shift:TPasMPInt32;
+    Mask:TPasMPUInt32;
+begin
+ p:=PPasMPInt32(pointer(TPasMPPtrUInt(TPasMPPtrUInt(@Destination) and not TPasMPPtrUInt(3))));
+ Shift:=TPasMPInt32((TPasMPPtrUInt(@Destination) and 3) shl 3);
+ Mask:=TPasMPUInt32($ff) shl Shift;
+ repeat
+  OldValue:=p^;
+  result:=TPasMPUInt8(OldValue shr Shift);
+  if result<>Comperand then begin
+   exit;
+  end;
+ until TPasMPInterlocked.CompareExchange(p^,TPasMPInt32((TPasMPUInt32(OldValue) and not Mask) or ((TPasMPUInt32(TPasMPUInt8(NewValue)) shl Shift) and Mask)),OldValue)=OldValue;
+end;
+{$ifend}
+
+class function TPasMPInterlocked.CompareExchange(var Destination:TPasMPInt16;const NewValue,Comperand:TPasMPInt16):TPasMPInt16;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ xchg ecx,eax
+ lock cmpxchg word ptr [ecx],dx
+{$else}
+ push ebx
+ mov ax,[esp+8]  // Comperand
+ mov bx,cx       // NewValue
+ lock cmpxchg word ptr [edx],bx
+ pop ebx
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ mov ax,r8w
+ lock cmpxchg word ptr [rcx],dx
+{$else}
+ mov ax,[rsp+40] // Comperand (5th param)
+ lock cmpxchg word ptr [rdx],r8w
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ mov ax,dx
+ lock cmpxchg word ptr [rdi],si
+{$else}
+ mov ax,cx
+ lock cmpxchg word ptr [rsi],dx
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt32;
+    p:PPasMPInt32;
+    Shift:TPasMPInt32;
+    Mask:TPasMPUInt32;
+begin
+ p:=PPasMPInt32(pointer(TPasMPPtrUInt(TPasMPPtrUInt(@Destination) and not TPasMPPtrUInt(3))));
+ Shift:=TPasMPInt32((TPasMPPtrUInt(@Destination) and 2) shl 3);
+ Mask:=TPasMPUInt32($ffff) shl Shift;
+ repeat
+  OldValue:=p^;
+  result:=TPasMPInt16(OldValue shr Shift);
+  if result<>Comperand then begin
+   exit;
+  end;
+ until TPasMPInterlocked.CompareExchange(p^,TPasMPInt32((TPasMPUInt32(OldValue) and not Mask) or ((TPasMPUInt32(TPasMPUInt16(NewValue)) shl Shift) and Mask)),OldValue)=OldValue;
+end;
+{$ifend}
+
+class function TPasMPInterlocked.CompareExchange(var Destination:TPasMPUInt16;const NewValue,Comperand:TPasMPUInt16):TPasMPUInt16;
+{$if defined(cpu386)}
+asm
+{$ifdef HAS_STATIC}
+ xchg ecx,eax
+ lock cmpxchg word ptr [ecx],dx
+{$else}
+ push ebx
+ mov ax,[esp+8]  // Comperand
+ mov bx,cx       // NewValue
+ lock cmpxchg word ptr [edx],bx
+ pop ebx
+{$endif}
+end;
+{$elseif defined(cpux86_64)}
+asm
+{$ifdef Windows}
+{$ifdef HAS_STATIC}
+ mov ax,r8w
+ lock cmpxchg word ptr [rcx],dx
+{$else}
+ mov ax,[rsp+40] // Comperand (5th param)
+ lock cmpxchg word ptr [rdx],r8w
+{$endif}
+{$else}
+{$ifdef HAS_STATIC}
+ mov ax,dx
+ lock cmpxchg word ptr [rdi],si
+{$else}
+ mov ax,cx
+ lock cmpxchg word ptr [rsi],dx
+{$endif}
+{$endif}
+end;
+{$else}
+var OldValue:TPasMPInt32;
+    p:PPasMPInt32;
+    Shift:TPasMPInt32;
+    Mask:TPasMPUInt32;
+begin
+ p:=PPasMPInt32(pointer(TPasMPPtrUInt(TPasMPPtrUInt(@Destination) and not TPasMPPtrUInt(3))));
+ Shift:=TPasMPInt32((TPasMPPtrUInt(@Destination) and 2) shl 3);
+ Mask:=TPasMPUInt32($ffff) shl Shift;
+ repeat
+  OldValue:=p^;
+  result:=TPasMPUInt16(OldValue shr Shift);
+  if result<>Comperand then begin
+   exit;
+  end;
+ until TPasMPInterlocked.CompareExchange(p^,TPasMPInt32((TPasMPUInt32(OldValue) and not Mask) or ((TPasMPUInt32(TPasMPUInt16(NewValue)) shl Shift) and Mask)),OldValue)=OldValue;
+end;
+{$ifend}
 
 class function TPasMPInterlocked.CompareExchange(var Destination:TPasMPInt32;const NewValue,Comperand:TPasMPInt32):TPasMPInt32;
 begin
@@ -5714,6 +7490,26 @@ begin
 {$else}
  result:=TPasMPBool32(TPasMPInt32(InterlockedCompareExchange(TPasMPInt32(Destination),TPasMPInt32(NewValue),TPasMPInt32(Comperand))));
 {$endif}
+end;
+
+class function TPasMPInterlocked.Read(var Source:TPasMPInt8):TPasMPInt8;
+begin
+ result:=TPasMPInterlocked.CompareExchange(Source,TPasMPInt8(0),TPasMPInt8(0));
+end;
+
+class function TPasMPInterlocked.Read(var Source:TPasMPUInt8):TPasMPUInt8;
+begin
+ result:=TPasMPInterlocked.CompareExchange(Source,TPasMPUInt8(0),TPasMPUInt8(0));
+end;
+
+class function TPasMPInterlocked.Read(var Source:TPasMPInt16):TPasMPInt16;
+begin
+ result:=TPasMPInterlocked.CompareExchange(Source,TPasMPInt16(0),TPasMPInt16(0));
+end;
+
+class function TPasMPInterlocked.Read(var Source:TPasMPUInt16):TPasMPUInt16;
+begin
+ result:=TPasMPInterlocked.CompareExchange(Source,TPasMPUInt16(0),TPasMPUInt16(0));
 end;
 
 class function TPasMPInterlocked.Read(var Source:TPasMPInt32):TPasMPInt32;
@@ -5806,6 +7602,30 @@ begin
 {$else}
  result:=TPasMPBool32(TPasMPInt32(InterlockedCompareExchange(TPasMPInt32(Source),TPasMPInt32(0),TPasMPInt32(0))));
 {$endif}
+end;
+
+class function TPasMPInterlocked.Write(var Destination:TPasMPInt8;const Source:TPasMPInt8):TPasMPInt8;
+begin
+ TPasMPInterlocked.Exchange(Destination,Source);
+ result:=Source;
+end;
+
+class function TPasMPInterlocked.Write(var Destination:TPasMPUInt8;const Source:TPasMPUInt8):TPasMPUInt8;
+begin
+ TPasMPInterlocked.Exchange(Destination,Source);
+ result:=Source;
+end;
+
+class function TPasMPInterlocked.Write(var Destination:TPasMPInt16;const Source:TPasMPInt16):TPasMPInt16;
+begin
+ TPasMPInterlocked.Exchange(Destination,Source);
+ result:=Source;
+end;
+
+class function TPasMPInterlocked.Write(var Destination:TPasMPUInt16;const Source:TPasMPUInt16):TPasMPUInt16;
+begin
+ TPasMPInterlocked.Exchange(Destination,Source);
+ result:=Source;
 end;
 
 class function TPasMPInterlocked.Write(var Destination:TPasMPInt32;const Source:TPasMPInt32):TPasMPInt32;
