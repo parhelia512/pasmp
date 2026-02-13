@@ -11464,7 +11464,7 @@ function TPasMPSingleProducerSingleConsumerRingBuffer.Read(const Buffer:pointer;
 var LocalReadIndex,LocalWriteIndex,ToRead,Count:TPasMPInt32;
     p:PPasMPUInt8;
 begin
- if (Bytes=0) or (Bytes>fSize) then begin
+ if (Bytes=0) or (Bytes>=fSize) then begin
   result:=0;
  end else begin
   TPasMPMultipleReaderSingleWriterSpinLock.AcquireRead(fLockState);
@@ -11525,7 +11525,7 @@ function TPasMPSingleProducerSingleConsumerRingBuffer.TryRead(const Buffer:point
 var LocalReadIndex,LocalWriteIndex,ToRead,Count:TPasMPInt32;
     p:PPasMPUInt8;
 begin
- if (Bytes=0) or (Bytes>fSize) then begin
+ if (Bytes=0) or (Bytes>=fSize) then begin
   result:=0;
  end else begin
   TPasMPMultipleReaderSingleWriterSpinLock.AcquireRead(fLockState);
@@ -11583,7 +11583,7 @@ function TPasMPSingleProducerSingleConsumerRingBuffer.ReadAsMuchAsPossible(const
 var LocalReadIndex,LocalWriteIndex,ToRead,Count:TPasMPInt32;
     p:PPasMPUInt8;
 begin
- if (Bytes=0) or (Bytes>fSize) then begin
+ if (Bytes=0) or (Bytes>=fSize) then begin
   result:=0;
  end else begin
   TPasMPMultipleReaderSingleWriterSpinLock.AcquireRead(fLockState);
@@ -11605,8 +11605,8 @@ begin
   if Bytes>result then begin
    Bytes:=result;
   end;
+  Count:=0;
   if Bytes>0 then begin
-   Count:=0;
    p:=pointer(Buffer);
    if (LocalReadIndex+Bytes)>fSize then begin
     ToRead:=fSize-LocalReadIndex;
@@ -11642,7 +11642,7 @@ function TPasMPSingleProducerSingleConsumerRingBuffer.Write(const Buffer:pointer
 var LocalReadIndex,LocalWriteIndex,ToWrite,Count:TPasMPInt32;
     p:PPasMPUInt8;
 begin
- if (Bytes=0) or (Bytes>fSize) then begin
+ if (Bytes=0) or (Bytes>=fSize) then begin
   result:=0;
  end else begin
   TPasMPMultipleReaderSingleWriterSpinLock.AcquireRead(fLockState);
@@ -11703,7 +11703,7 @@ function TPasMPSingleProducerSingleConsumerRingBuffer.TryWrite(const Buffer:poin
 var LocalReadIndex,LocalWriteIndex,ToWrite,Count:TPasMPInt32;
     p:PPasMPUInt8;
 begin
- if (Bytes=0) or (Bytes>fSize) then begin
+ if (Bytes=0) or (Bytes>=fSize) then begin
   result:=0;
  end else begin
   TPasMPMultipleReaderSingleWriterSpinLock.AcquireRead(fLockState);
@@ -11761,7 +11761,7 @@ function TPasMPSingleProducerSingleConsumerRingBuffer.WriteAsMuchAsPossible(cons
 var LocalReadIndex,LocalWriteIndex,ToWrite,Count:TPasMPInt32;
     p:PPasMPUInt8;
 begin
- if (Bytes=0) or (Bytes>fSize) then begin
+ if (Bytes=0) or (Bytes>=fSize) then begin
   result:=0;
  end else begin
   TPasMPMultipleReaderSingleWriterSpinLock.AcquireRead(fLockState);
@@ -11783,8 +11783,8 @@ begin
   if Bytes>result then begin
    Bytes:=result;
   end;
+  Count:=0;
   if Bytes>0 then begin
-   Count:=0;
    p:=pointer(Buffer);
    if (LocalWriteIndex+Bytes)>fSize then begin
     ToWrite:=fSize-LocalWriteIndex;
